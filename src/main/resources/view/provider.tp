@@ -1,0 +1,11 @@
+using UnityEngine;
+
+namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
+    public sealed class %PASCAL_NAME%Provider : MonoBehaviour
+    {
+        public I%PASCAL_NAME%Presenter provide(I%PASCAL_NAME%View view) {
+            I%PASCAL_NAME%Presenter presenter = new %PASCAL_NAME%Presenter(view);
+            return presenter;
+        }
+    }
+}

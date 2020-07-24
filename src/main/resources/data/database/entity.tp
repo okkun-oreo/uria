@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+namespace %PROJECT_NAME%.Data.Local.%PASCAL_NAME% {
+    [Serializable]
+    [CreateAssetMenu(fileName = "%PASCAL_NAME%", menuName="%PASCAL_NAME%/CreateEntity")]
+    public class %PASCAL_NAME%Entity : ScriptableObject {
+
+        //　アイテムの種類
+        [SerializeField]
+        private string name;
+
+        public string GetName() {
+            return this.name;
+        }
+
+    }
+}

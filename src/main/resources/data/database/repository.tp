@@ -1,0 +1,15 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace %PROJECT_NAME%.Data.Local.%PASCAL_NAME% {
+    public sealed class %PASCAL_NAME%Repository : MonoBehaviour, I%PASCAL_NAME%Repository
+    {
+        [SerializeField]
+        private %PASCAL_NAME%DataBase dataBase;
+
+        public List<%PASCAL_NAME%Entity> GetAll() {
+            return dataBase.GetAll();
+        }
+
+    }
+}

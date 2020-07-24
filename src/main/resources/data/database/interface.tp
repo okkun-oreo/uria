@@ -1,0 +1,8 @@
+using System.Collections.Generic;
+
+namespace %PROJECT_NAME%.Data.Local.%PASCAL_NAME% {
+    public interface I%PASCAL_NAME%Repository
+    {
+        List<%PASCAL_NAME%Entity> GetAll();
+    }
+}

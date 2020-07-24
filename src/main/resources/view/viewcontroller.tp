@@ -1,0 +1,35 @@
+using UnityEngine;
+
+namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
+    /// <summary>
+    /// %DESCRIPTION%
+    /// </summary>
+    [RequireComponent(typeof(%PASCAL_NAME%Provider))]
+    public sealed class %PASCAL_NAME%ViewController : MonoBehaviour, I%PASCAL_NAME%View
+    {
+        [SerializeField] private %PASCAL_NAME%Provider provider;
+        private I%PASCAL_NAME%Presenter _presenter;
+
+        private void Awake()
+        {
+            _presenter = provider.provide(this);
+        }
+
+        private void Start()
+        {
+
+        }
+
+
+
+        public void ShowProgress()
+        {
+
+        }
+
+        public void HideProgress()
+        {
+
+        }
+    }
+}

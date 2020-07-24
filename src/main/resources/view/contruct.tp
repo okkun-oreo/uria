@@ -1,0 +1,13 @@
+namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
+    public interface I%PASCAL_NAME%View
+    {
+        void ShowProgress();
+        void HideProgress();
+    }
+
+    public interface I%PASCAL_NAME%Presenter
+    {
+
+    }
+
+}

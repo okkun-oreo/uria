@@ -1,0 +1,11 @@
+namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
+    public sealed class %PASCAL_NAME%Presenter : I%PASCAL_NAME%Presenter
+    {
+        private I%PASCAL_NAME%View _view;
+
+        public %PASCAL_NAME%Presenter(I%PASCAL_NAME%View view) {
+            _view = view;
+        }
+
+    }
+}

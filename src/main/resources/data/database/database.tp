@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace %PROJECT_NAME%.Data.Local.%PASCAL_NAME% {
+    [CreateAssetMenu(fileName = "%PASCAL_NAME%DataBase", menuName="%PASCAL_NAME%/CreateDataBase")]
+    public class %PASCAL_NAME%DataBase : ScriptableObject {
+
+        [SerializeField]
+        private List<%PASCAL_NAME%Entity> %CAMEL_NAME%List = new List<%PASCAL_NAME%Entity>();
+
+        //　アイテムリストを返す
+        public List<%PASCAL_NAME%Entity> GetAll() {
+            return %CAMEL_NAME%List;
+        }
+    }
+}
