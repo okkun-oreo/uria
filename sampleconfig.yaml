@@ -1,8 +1,0 @@
-unity:
-  applicationName: Uria
-  scenes:
-    - name: splash
-      description: "hoge"
-
-  masters:
-    - name: weapon
