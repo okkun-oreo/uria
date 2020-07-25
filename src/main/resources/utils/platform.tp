@@ -1,0 +1,23 @@
+namespace %PROJECT_NAME%.Utils
+{
+    public class Platform
+    {
+        public enum TYPE
+        {
+            EDITOR,
+            ANDROID,
+            IOS
+        }
+
+        public static TYPE GetType()
+        {
+#if UNITY_ANDROID
+            return TYPE.ANDROID;
+#elif UNITY_IPHONE
+            return TYPE.IOS;
+#else
+            return TYPE.EDITOR;
+#endif
+        }
+    }
+}

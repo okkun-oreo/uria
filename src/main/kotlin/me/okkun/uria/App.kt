@@ -9,9 +9,12 @@ import me.okkun.uria.data.entity.Config
 import me.okkun.uria.data.entity.MasterDataEntity
 import me.okkun.uria.domain.parser.MasterDataParser
 import me.okkun.uria.domain.parser.SceneParser
+import me.okkun.uria.domain.parser.UtilsParser
 import me.okkun.uria.translator.MasterDataTranslator
 import me.okkun.uria.translator.SceneTranslator
+import me.okkun.uria.translator.UtilsTranslator
 import me.okkun.uria.utils.UriaResources
+import me.okkun.uria.utils.excel.WorkBook
 
 fun main(args: Array<String>) {
     val path   = args.getOrNull(0) ?: return
@@ -23,6 +26,16 @@ fun main(args: Array<String>) {
 
     for (master in MasterDataTranslator.to(yaml)) {
         uria.execute(master, UriaResources.MasterData.values().toList(), MasterDataParser())
+    }
+
+    val util = UtilsTranslator.to(yaml)
+    uria.execute(util, UriaResources.Utils.values().toList(), UtilsParser())
+
+    val book = WorkBook(yaml.unity.strings!!)
+    println(yaml.unity.strings!!)
+    val all  = book.getSheet("シート1")?.getAll() ?: return
+    for (line in all) {
+        println(line)
     }
 
 }

@@ -1,0 +1,79 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using %PROJECT_NAME%.Data.Local.%PASCAL_NAME%;
+using UnityEngine;
+using UnityEditor;
+
+[CreateAssetMenu(menuName = "%PROJECT_NAME%/%PASCAL_NAME%/Create")]
+public class %PASCAL_NAME%EntityImporter : ScriptableObject {
+    public TextAsset csvFile;
+}
+
+[CustomEditor(typeof(%PASCAL_NAME%EntityImporter))]
+public class %PASCAL_NAME%EntityImporterEditor : Editor {
+	public override void OnInspectorGUI(){
+		var csvImpoter = target as %PASCAL_NAME%EntityImporter;
+		DrawDefaultInspector();
+
+		if (GUILayout.Button("Create %PASCAL_NAME%Entity")){
+			SetCsvDataToScriptableObject(csvImpoter);
+		}
+	}
+
+	void SetCsvDataToScriptableObject(%PASCAL_NAME%EntityImporter csvImporter){
+		// ボタンを押されたらパース実行
+		if (csvImporter.csvFile == null){
+			Debug.LogWarning("Csv File is Null");
+			return;
+		}
+
+		// csvファイルをstring形式に変換
+		string csvText = csvImporter.csvFile.text;
+
+		// 改行ごとにパース
+		string[] afterParse = csvText.Split('\n');
+
+		// ヘッダー行を除いてインポート
+		for (int i = 1; i < afterParse.Length; i++){
+			string[] parseByComma = afterParse[i].Split(',');
+
+			int column = 0;
+
+			// 先頭の列が空であればその行は読み込まない
+			if (parseByComma[column] == ""){
+				continue;
+			}
+
+			// 行数をIDとしてファイルを作成
+			string fileName = parseByComma[column] + ".asset";
+			string path = "Assets/Database/%PASCAL_NAME%/" + fileName;
+            if (!Directory.Exists("Assets/Database"))
+            {
+                Directory.CreateDirectory("Assets/Database");
+            }
+            if (!Directory.Exists("Assets/Database/%PASCAL_NAME%")) {
+                Directory.CreateDirectory("Assets/Database/%PASCAL_NAME%");
+            }
+
+
+			// EnemyDataのインスタンスをメモリ上に作成
+			var %CAMEL_NAME%Entity = CreateInstance<%PASCAL_NAME%Entity>();
+
+			// 名前
+			%CAMEL_NAME%Entity.SetName(parseByComma[column]);
+			// インスタンス化したものをアセットとして保存
+			var asset = (%PASCAL_NAME%Entity)AssetDatabase.LoadAssetAtPath(path, typeof(%PASCAL_NAME%Entity));
+			if (asset == null){
+				// 指定のパスにファイルが存在しない場合は新規作成
+				AssetDatabase.CreateAsset(%CAMEL_NAME%Entity, path);
+			} else {
+				// 指定のパスに既に同名のファイルが存在する場合は更新
+				EditorUtility.CopySerialized(%CAMEL_NAME%Entity, asset);
+				AssetDatabase.SaveAssets();
+			}
+			AssetDatabase.Refresh();
+		}
+		Debug.Log(csvImporter.name + " : Success");
+	}
+}

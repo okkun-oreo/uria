@@ -6,5 +6,6 @@ import kotlinx.serialization.Serializable
 data class UnityEntity(
         val applicationName: String,
         val scenes: List<SceneEntity>?,
-        val masters: List<MasterDataEntity>?
+        val masters: List<MasterDataEntity>?,
+        val strings: String?
 )

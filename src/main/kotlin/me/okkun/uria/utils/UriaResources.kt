@@ -15,8 +15,15 @@ interface UriaResources {
         ENTITY("data/database/entity.tp", "Assets/Scripts/%PROJECT_NAME%/Data/Local/%PASCAL_NAME%/%PASCAL_NAME%Entity.cs"),
         DATABASE("data/database/database.tp", "Assets/Scripts/%PROJECT_NAME%/Data/Local/%PASCAL_NAME%/%PASCAL_NAME%DataBase.cs"),
         REPOSITORY("data/database/repository.tp", "Assets/Scripts/%PROJECT_NAME%/Data/Local/%PASCAL_NAME%/%PASCAL_NAME%Repository.cs"),
-        IREPOSITORY("data/database/interface.tp", "Assets/Scripts/%PROJECT_NAME%/Data/Local/%PASCAL_NAME%/I%PASCAL_NAME%Repository.cs")
+        IREPOSITORY("data/database/interface.tp", "Assets/Scripts/%PROJECT_NAME%/Data/Local/%PASCAL_NAME%/I%PASCAL_NAME%Repository.cs"),
+        EDITOR("data/database/editor.tp", "Assets/Editor/%PASCAL_NAME%EntityImporterEditor.cs")
     }
+
+    enum class Utils(override val input: String, override val output: String) : Resources {
+        PLATFORM("utils/platform.tp", "Assets/Scripts/%PROJECT_NAME%/Utils/Platform.cs"),
+        CSV_IMPORTER("utils/csv.tp", "Assets/Editor/CsvImporter.cs")
+    }
+
 
 
 }
