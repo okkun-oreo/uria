@@ -1,0 +1,62 @@
+using System;
+using System.IO;
+using UnityEngine;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+
+
+public class SceneMaker
+{
+    [MenuItem("Scenes/Create")]
+    public static void Create()
+    {
+        var scenes = Enum.GetValues(typeof(Scenes));
+
+        foreach (var sceneName in scenes)
+        {
+            string strSceneName = sceneName.ToString();
+            string folder = "Assets/Scenes/" + strSceneName + "/";
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            string path = folder + strSceneName + ".unity";
+            if (!File.Exists(path))
+            {
+                var scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects);
+                scene.name = strSceneName;
+                var controller = new GameObject(strSceneName + "ViewController");
+                Type type = GetType(GetScriptName(strSceneName));
+                if (type != null)
+                {
+                    controller.AddComponent(type);
+                    EditorSceneManager.SaveScene(scene, path);
+                    Debug.Log("作成しました: " + strSceneName);
+                }
+            }
+            else
+            {
+                Debug.Log("既に作成済です");
+            }
+        }
+    }
+
+    private static string GetScriptName(string sceneName)
+    {
+        return "%PROJECT_NAME%.View.Scenes." + sceneName + "." + sceneName + "ViewController";
+    }
+    
+
+    private static Type GetType(string scriptName)
+    {
+        var type = Type.GetType(scriptName);
+        if (type != null) return type;
+        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+        {
+            type = assembly.GetType(scriptName);
+            if (type != null)
+                return type;
+        }
+        return null;
+    }   
+}
