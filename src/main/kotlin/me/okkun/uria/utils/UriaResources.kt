@@ -1,6 +1,6 @@
 package me.okkun.uria.utils
 
-import com.okkun.utils.Resources
+import com.okkun.common.utils.Resources
 
 interface UriaResources {
     enum class View(override val input: String, override val output: String) : Resources {
@@ -21,7 +21,14 @@ interface UriaResources {
 
     enum class Utils(override val input: String, override val output: String) : Resources {
         PLATFORM("utils/platform.tp", "Assets/Scripts/%PROJECT_NAME%/Utils/Platform.cs"),
-        CSV_IMPORTER("utils/csv.tp", "Assets/Editor/CsvImporter.cs")
+        CSV_IMPORTER("utils/csv.tp", "Assets/Editor/CsvImporter.cs"),
+        TIMER("utils/timer.tp", "Assets/Editor/Timer.cs"),
+        HTTP_CLIENT("utils/http/client.tp", "Assets/Scripts/%PROJECT_NAME%/Utils/Http/HttpClient.cs"),
+        HTTP_RESULT("utils/http/result.tp", "Assets/Scripts/%PROJECT_NAME%/Utils/Http/HttpResult.cs"),
+    }
+
+    enum class Domain(override val input: String, override val output: String) : Resources {
+        MODEL("domain/model.tp", "Assets/Scripts/%PROJECT_NAME%/Domain/Model/%PASCAL_NAME%/%PASCAL_NAME%.cs")
     }
 
 

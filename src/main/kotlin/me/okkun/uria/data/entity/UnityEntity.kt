@@ -7,5 +7,5 @@ data class UnityEntity(
         val applicationName: String,
         val scenes: List<SceneEntity>?,
         val masters: List<MasterDataEntity>?,
-        val strings: String?
+        val models: List<DomainModelEntity>?
 )

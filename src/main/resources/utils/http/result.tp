@@ -1,0 +1,14 @@
+namespace %PROJECT_NAME%.Utils.Http
+{
+    public class HttpResult
+    {
+        public readonly string text;
+        public readonly long   code;
+
+        public HttpResult(string text, long code)
+        {
+            this.text = text;
+            this.code = code;
+        }
+    }
+}

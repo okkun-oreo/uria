@@ -1,0 +1,52 @@
+using System;
+using System.Collections;
+using UnityEngine;
+
+namespace %PROJECT_NAME%.Utils
+{
+    public class Timer
+    {
+        private Coroutine _coroutine = null;
+        private readonly MonoBehaviour _behaviour;
+
+        public Timer(MonoBehaviour behaviour)
+        {
+            _behaviour = behaviour;
+        }
+
+        public void OneShot(Action action, float seconds)
+        {
+            if (_coroutine == null)
+            {
+                _coroutine = _behaviour.StartCoroutine(StartTimer(action, seconds, false));
+            }
+        }
+
+        public void Loop(Action action, float seconds)
+        {
+            if (_coroutine == null)
+            {
+                _coroutine = _behaviour.StartCoroutine(StartTimer(action, seconds, true));
+            }
+        }
+
+        public void Stop()
+        {
+            if (_coroutine != null)
+            {
+                _behaviour.StopCoroutine(_coroutine);
+                _coroutine = null;
+            }
+        }
+
+        private IEnumerator StartTimer(Action action, float seconds, bool isLoop)
+        {
+            do
+            {
+                yield return new WaitForSeconds(seconds);
+                action.Invoke();
+            } while (isLoop);
+            _coroutine = null;
+        }
+    }
+}

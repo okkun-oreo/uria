@@ -1,0 +1,10 @@
+
+
+namespace %PROJECT_NAME%.Domain.Model.%PASCAL_NAME% {
+    public sealed class %PASCAL_NAME% {
+
+        public %PASCAL_NAME%() {
+
+        }
+    }
+}

@@ -1,0 +1,100 @@
+@startuml uria
+
+package Common {
+    package Data {
+        package Entity {
+            class Cafe {
+                args string: name
+            }
+            class Shop {
+                args string: name
+            }
+        }
+        
+        package Repository {
+            interface IRepository {
+                args string : name
+                func string : name (int id, string name)
+            }
+
+            class Repository {
+
+            }
+        }
+
+        interface IDataStore {
+
+        }
+
+        class DataStore {
+
+        }
+    }
+
+    package Domain {
+        interface IUseCase {
+            void : syncData()
+        }
+
+        class UseCase {
+
+        }
+
+        interface IService {
+
+        }
+
+        class Service {
+
+        }
+
+    }
+
+    package View {
+        interface IViewController {
+            void : showProgress()
+            void : hideProgress()
+        }
+
+        interface IPresenter {
+        }
+
+        interface IView {
+            void : show()
+            void : hide()
+        }
+
+        class View {
+
+        }
+
+        interface IViewController {
+
+        }
+
+        class ViewController {
+
+        }
+
+        class Presenter {
+
+        }
+    }
+
+    IView <|..down.. View
+    IViewController <|..down.. ViewController
+    IPresenter <|..down..Presenter
+    IUseCase <|..down..UseCase
+    IService <|..down..Service
+    IRepository <|..down..Repository
+    IDataStore  <|..down..DataStore
+
+    IView <..right..> IViewController
+    IViewController <..right..> IPresenter
+    IPresenter <..right..> IUseCase
+    IUseCase ..right..> IService
+    IService ..right..> IRepository
+    IRepository ..right..> IDataStore
+}
+
+@enduml

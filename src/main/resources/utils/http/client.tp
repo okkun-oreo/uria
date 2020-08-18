@@ -1,0 +1,66 @@
+using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
+
+namespace %PROJECT_NAME%.Utils.Http
+{
+    public class HttpClient
+    {
+        private readonly string _url;
+        private readonly int _timeout;
+
+        public HttpClient(string url, int timeout)
+        {
+            _url = url;
+            _timeout = (5 < timeout) ? timeout : 5;
+        }
+
+        public IEnumerator Get(Action<HttpResult> action)
+        {
+            UnityWebRequest www = UnityWebRequest.Get(_url);
+            yield return Send(www);
+            action.Invoke(BuildResult(www));
+        }
+
+        public IEnumerator Post(WWWForm param, Action<HttpResult> action)
+        {
+            UnityWebRequest www = UnityWebRequest.Post(_url, param);
+            yield return Send(www);
+            action.Invoke(BuildResult(www));
+        }
+
+
+
+
+
+
+        private HttpResult BuildResult(UnityWebRequest www)
+        {
+            string resText = www.downloadHandler.text;
+            long   resCode = www.responseCode;            
+            return new HttpResult(resText, resCode);
+        }
+        private IEnumerator Send(UnityWebRequest www)
+        {
+            float addTime = 0f;
+            UnityWebRequestAsyncOperation op = www.SendWebRequest();
+
+            while (true)
+            {
+                if (!op.isDone)
+                {
+                    Debug.Log("waiting: " + addTime);
+                    yield return null;
+                }
+                addTime += Time.deltaTime;
+                if ((int) addTime >= _timeout)
+                {
+                    www.Abort();
+                    break;
+                }
+            }
+        }
+        
+    }
+}

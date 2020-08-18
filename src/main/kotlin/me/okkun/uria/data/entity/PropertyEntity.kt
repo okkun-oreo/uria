@@ -3,7 +3,7 @@ package me.okkun.uria.data.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MasterDataEntity(
+data class PropertyEntity(
         val name: String,
-        val props: List<PropertyEntity>
+        val type: String
 )

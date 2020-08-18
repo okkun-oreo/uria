@@ -1,0 +1,33 @@
+@startuml usecase
+
+actor User as user
+
+left to right direction
+
+package Redmine {
+    package Issue {
+        usecase "課題を取得する" as issue1
+        usecase "課題を登録する" as issue2
+    }
+    package Project {
+        usecase "プロジェクトを取得する" as getProject
+        usecase "プロジェクトを登録する" as setProject
+    }
+}
+
+package Gacha {
+    usecase "アイテムを購入する" as gacha1
+    usecase "アイテムを取得する" as gacha2
+    usecase "アイテムを登録する" as gacha3
+}
+
+user --> issue1
+
+user --> getProject
+user --> setProject
+
+user --> gacha1
+user --> gacha2
+
+
+@enduml

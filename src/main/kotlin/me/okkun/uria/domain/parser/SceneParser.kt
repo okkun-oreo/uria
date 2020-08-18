@@ -1,7 +1,7 @@
 package me.okkun.uria.domain.parser
 
-import com.okkun.utils.StringEx
-import com.okkun.utils.parser.Parser
+import com.okkun.common.utils.StringEx
+import com.okkun.common.utils.parser.Parser
 import me.okkun.uria.data.entity.UnityEntity
 import me.okkun.uria.domain.model.SceneData
 

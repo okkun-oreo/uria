@@ -1,10 +1,9 @@
 using UnityEngine;
 
-namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
+namespace %PROJECT_NAME%.View.Prefabs.%PASCAL_NAME% {
     /// <summary>
     /// %DESCRIPTION%
     /// </summary>
-    [RequireComponent(typeof(%PASCAL_NAME%Provider))]
     public sealed class %PASCAL_NAME%ViewController : MonoBehaviour, I%PASCAL_NAME%View
     {
         [SerializeField] private %PASCAL_NAME%Provider provider;
@@ -12,7 +11,7 @@ namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
 
         private void Awake()
         {
-            _presenter = provider.Provide(this);
+            _presenter = provider.provide(this);
         }
 
         private void Start()

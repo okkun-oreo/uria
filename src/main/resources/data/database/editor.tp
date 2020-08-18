@@ -34,10 +34,8 @@ public class %PASCAL_NAME%EntityImporterEditor : Editor {
 		// 改行ごとにパース
 		string[] afterParse = csvText.Split('\n');
 
-		// ヘッダー行を除いてインポート
-		for (int i = 1; i < afterParse.Length; i++){
+		for (int i = 0; i < afterParse.Length; i++){
 			string[] parseByComma = afterParse[i].Split(',');
-
 			int column = 0;
 
 			// 先頭の列が空であればその行は読み込まない
