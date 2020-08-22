@@ -7,11 +7,11 @@ namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
     [RequireComponent(typeof(%PASCAL_NAME%Provider))]
     public sealed class %PASCAL_NAME%ViewController : MonoBehaviour, I%PASCAL_NAME%View
     {
-        [SerializeField] private %PASCAL_NAME%Provider provider;
         private I%PASCAL_NAME%Presenter _presenter;
 
         private void Awake()
         {
+            %PASCAL_NAME%Provider provider = GetComponent<%PASCAL_NAME%Provider>();
             _presenter = provider.Provide(this);
         }
 

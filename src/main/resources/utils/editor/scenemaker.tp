@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
-using %PROJECT_NAME%.Utils.Scene;
+using %PROJECT_NAME%.Configs;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SceneMaker
 {
@@ -36,6 +38,12 @@ public class SceneMaker
                 if (type != null)
                 {
                     controller.AddComponent(type);
+                    
+                    AddCanvas("MainLayer", 10);
+                    AddCanvas("SubLayer", 20);
+                    AddCanvas("DialogLayer", 30);                
+                    AddEventSystem();
+                    
                     EditorSceneManager.SaveScene(scene, path);
                     Debug.Log("作成しました: " + strSceneName);
                 }
@@ -54,8 +62,28 @@ public class SceneMaker
     {
         return "%PROJECT_NAME%.View.Scenes." + sceneName + "." + sceneName + "ViewController";
     }
-    
 
+    private static void AddEventSystem()
+    {
+        GameObject obj = new GameObject("EventSystem");
+        obj.AddComponent<EventSystem>();
+        obj.AddComponent<StandaloneInputModule>();        
+    }
+
+    private static void AddCanvas(string name, int priority)
+    {
+        Camera     camera        = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        GameObject canvasObj = new GameObject( priority + "_" + name + "Canvas");
+        Canvas     canvas    = canvasObj.AddComponent<Canvas>();
+        canvas.worldCamera      = camera;
+        canvas.renderMode       = RenderMode.ScreenSpaceCamera;
+        canvas.sortingOrder     = priority;
+        CanvasScaler scaler = canvasObj.AddComponent<CanvasScaler>();
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1920, 1080);
+        canvasObj.AddComponent<GraphicRaycaster>();        
+    }
+    
     private static Type GetType(string scriptName)
     {
         var type = Type.GetType(scriptName);

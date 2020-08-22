@@ -1,0 +1,13 @@
+namespace %PROJECT_NAME%.View.Scenes
+{
+    public interface IView
+    {
+        void ShowProgress();
+        void HideProgress();
+    }
+
+    public interface IPresenter
+    {
+        
+    }     
+}

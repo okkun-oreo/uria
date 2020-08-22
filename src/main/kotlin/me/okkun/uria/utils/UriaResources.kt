@@ -24,8 +24,9 @@ interface UriaResources {
         TIMER("utils/timer.tp", "Assets/Editor/Timer.cs"),
         HTTP_CLIENT("utils/http/client.tp", "Assets/Scripts/%PROJECT_NAME%/Utils/Http/HttpClient.cs"),
         HTTP_RESULT("utils/http/result.tp", "Assets/Scripts/%PROJECT_NAME%/Utils/Http/HttpResult.cs"),
-        ENM_SCENES("utils/scenes.tp", "Assets/Scripts/%PROJECT_NAME%/Utils/Scene/Scenes.cs"),
-        EDITOR_SCENE("utils/editor/scenemaker.tp", "Assets/Editor/%PROJECT_NAME%/SceneMaker.cs"),        
+        ENM_SCENES("utils/scenes.tp", "Assets/Scripts/%PROJECT_NAME%/Configs/Scenes.cs"),
+        EDITOR_SCENE("utils/editor/scenemaker.tp", "Assets/Editor/%PROJECT_NAME%/SceneMaker.cs"),
+        CONTRACT("utils/contruct.tp", "Assets/Scripts/%PROJECT_NAME%/View/Scenes/BaseContruct.cs")  
     }
 
     enum class Domain(override val input: String, override val output: String) : Resources {
