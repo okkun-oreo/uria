@@ -7,7 +7,8 @@ import me.okkun.uria.domain.model.UtilData
 class UtilsTranslator {
     companion object {
         fun to(yaml: Config) : UtilData {
-            return UtilData(yaml.unity.applicationName)
+            val scenes = SceneTranslator.to(yaml)
+            return UtilData(yaml.unity.applicationName, scenes)
         }
     }
 }

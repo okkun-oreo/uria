@@ -1,0 +1,5 @@
+namespace %PROJECT_NAME%.Utils.Scene {
+    public enum Scenes {
+%ENM_SCENES%
+    }
+}

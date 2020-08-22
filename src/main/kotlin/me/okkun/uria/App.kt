@@ -21,6 +21,15 @@ import me.okkun.uria.utils.excel.WorkBook
 
 fun main(args: Array<String>) {
     val path   = args.getOrNull(0) ?: return
+    if(path == "init") {
+        FileEx.mkdir("00_Documents");
+        FileEx.mkdir("01_Unity");
+        FileEx.mkdir("02_AndroidLib");
+        FileEx.mkdir("03_iOSLib");
+        FileEx.mkdir("04_Tools");
+        return;
+    }
+    
     val yaml   = YamlReader(path).read(Config.serializer()) ?: return
     val uria = PhoenixService()
     for (scene in SceneTranslator.to(yaml)) {
