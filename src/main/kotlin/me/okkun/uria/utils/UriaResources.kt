@@ -6,9 +6,14 @@ interface UriaResources {
     enum class View(override val input: String, override val output: String) : Resources {
         CONTROLLER("view/viewcontroller.tp", "Assets/Scripts/%PROJECT_NAME%/View/Scenes/%PASCAL_NAME%/%PASCAL_NAME%ViewController.cs"),
         CONTRUCT("view/contruct.tp", "Assets/Scripts/%PROJECT_NAME%/View/Scenes/%PASCAL_NAME%/%PASCAL_NAME%Contruct.cs"),
-        PRESENTER("view/presenter.tp", "Assets/Scripts/%PROJECT_NAME%/View/Scenes/%PASCAL_NAME%/%PASCAL_NAME%Presenter.cs"),
-        BUILDER("view/provider.tp", "Assets/Scripts/%PROJECT_NAME%/View/Scenes/%PASCAL_NAME%/%PASCAL_NAME%Provider.cs")
+        PRESENTER("view/presenter.tp", "Assets/Scripts/%PROJECT_NAME%/View/Scenes/%PASCAL_NAME%/%PASCAL_NAME%Presenter.cs")
     }
+
+    enum class UseCase(override val input: String, override val output: String) : Resources {
+        USECASE("domain/usecase.tp", "Assets/Scripts/%PROJECT_NAME%/Domain/UseCase/%PASCAL_NAME%/%PASCAL_NAME%UseCaseImpl.cs"),
+        IUSECASE("domain/iusecase.tp", "Assets/Scripts/%PROJECT_NAME%/Domain/UseCase/%PASCAL_NAME%/%PASCAL_NAME%UseCase.cs"),
+    }
+
 
     enum class MasterData(override val input: String, override val output: String) : Resources {
         ENTITY("data/database/entity.tp", "Assets/Scripts/%PROJECT_NAME%/Data/Local/%PASCAL_NAME%/%PASCAL_NAME%Entity.cs"),

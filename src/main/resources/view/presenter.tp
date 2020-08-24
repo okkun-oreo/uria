@@ -1,11 +1,24 @@
+using UnityEngine;
+%USING_USE_CASES%
+
+
 namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
-    public sealed class %PASCAL_NAME%Presenter : I%PASCAL_NAME%Presenter
+    /// <summary>
+    /// [責務] 画面とロジックのブリッジ
+    /// [purpose] Bridge for Logic and View
+    /// </summary>
+
+    public sealed class %PASCAL_NAME%Presenter : MonoBehaviour, I%PASCAL_NAME%Presenter
     {
         private I%PASCAL_NAME%View _view;
+        
+%USECASES%
 
-        public %PASCAL_NAME%Presenter(I%PASCAL_NAME%View view) {
-            _view = view;
+        /// <summary>
+        /// this method purpose is constructor
+        /// </summary>
+        private void Awake() {
+            _view = GetComponent<%PASCAL_NAME%ViewController>();
         }
-
     }
 }

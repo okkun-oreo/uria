@@ -2,25 +2,23 @@ using UnityEngine;
 
 namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
     /// <summary>
-    /// %DESCRIPTION%
+    /// [責務] %PASCAL_NAME%の描画処理
+    /// [purpose] View for %PASCAL_NAME%
     /// </summary>
-    [RequireComponent(typeof(%PASCAL_NAME%Provider))]
+    [RequireComponent(typeof(%PASCAL_NAME%Presenter))]
     public sealed class %PASCAL_NAME%ViewController : MonoBehaviour, I%PASCAL_NAME%View
     {
         private I%PASCAL_NAME%Presenter _presenter;
 
         private void Awake()
         {
-            %PASCAL_NAME%Provider provider = GetComponent<%PASCAL_NAME%Provider>();
-            _presenter = provider.Provide(this);
+            _presenter = GetComponent<%PASCAL_NAME%Presenter>();
         }
 
         private void Start()
         {
 
         }
-
-
 
         public void ShowProgress()
         {

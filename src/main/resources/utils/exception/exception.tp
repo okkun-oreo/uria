@@ -1,0 +1,13 @@
+using %PROJECT_NAME%.Configs;
+
+namespace %PROJECT_NAME%.Utils.Exception {
+
+    public sealed class %PROJECT_NAME%Exception : System.Exception {
+        public readonly ErrorType type;
+
+        public %PROJECT_NAME%Exception(ErrorType type) {
+            this.type = type;
+        }
+    }
+
+}

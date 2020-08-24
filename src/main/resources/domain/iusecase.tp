@@ -1,0 +1,7 @@
+using UnityEngine;
+
+namespace %PROJECT_NAME%.Domain.UseCase.%PASCAL_NAME% {
+    public abstract class %PASCAL_NAME%UseCase : MonoBehaviour {
+
+    }
+}

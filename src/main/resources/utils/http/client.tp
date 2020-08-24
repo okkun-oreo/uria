@@ -30,11 +30,6 @@ namespace %PROJECT_NAME%.Utils.Http
             action.Invoke(BuildResult(www));
         }
 
-
-
-
-
-
         private HttpResult BuildResult(UnityWebRequest www)
         {
             string resText = www.downloadHandler.text;
@@ -50,7 +45,6 @@ namespace %PROJECT_NAME%.Utils.Http
             {
                 if (!op.isDone)
                 {
-                    Debug.Log("waiting: " + addTime);
                     yield return null;
                 }
                 addTime += Time.deltaTime;
@@ -60,7 +54,6 @@ namespace %PROJECT_NAME%.Utils.Http
                     break;
                 }
             }
-        }
-        
+        }        
     }
 }

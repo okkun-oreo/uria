@@ -1,0 +1,11 @@
+
+namespace %PROJECT_NAME%.Configs {
+    
+    public enum ErrorType {
+        INVALID_ARGUMENT,
+
+
+    }
+
+
+}
