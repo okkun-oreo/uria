@@ -3,7 +3,9 @@
  */
 package me.okkun.uria
 
+import com.okkun.common.domain.model.TextFile
 import com.okkun.common.domain.service.PhoenixService
+import com.okkun.common.utils.ResourceLoader
 import com.okkun.common.utils.reader.YamlReader
 import me.okkun.uria.data.entity.Config
 import me.okkun.uria.data.entity.DomainModelEntity
@@ -24,6 +26,10 @@ fun main(args: Array<String>) {
         FileEx.mkdir("02_AndroidLib")
         FileEx.mkdir("03_iOSLib")
         FileEx.mkdir("04_Tools")
+        ResourceLoader.read(UriaResources.Config.CONFIG)?.let { content ->
+            val text = TextFile(UriaResources.Config.CONFIG.output)
+            text.write(content)
+        }
         return;
     }
     

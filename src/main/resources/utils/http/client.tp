@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace %PROJECT_NAME%.Utils.Http
+namespace %PROJECT_NAME%.Data.Http
 {
     public class HttpClient
     {
