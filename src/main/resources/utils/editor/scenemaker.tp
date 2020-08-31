@@ -7,6 +7,7 @@ using UnityEditor.SceneManagement;
 using %PROJECT_NAME%.Configs;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Zenject;
 
 public class SceneMaker
 {
@@ -32,9 +33,16 @@ public class SceneMaker
             if (!File.Exists(path))
             {
                 var scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects);
-                scene.name = strSceneName;
                 var controller = new GameObject(strSceneName + "ViewController");
                 Type type = GetType(GetScriptName(strSceneName));
+
+                var installer = new GameObject(strSceneName + "Installer");
+                MonoInstaller monoInstaller = installer.AddComponent(GetType(GetInstallerName(strSceneName))) as MonoInstaller;
+                
+                var context = new GameObject("SceneContext");
+                SceneContext sceneContext = context.AddComponent<SceneContext>();
+                sceneContext.Installers = new []{ monoInstaller };
+
                 if (type != null)
                 {
                     controller.AddComponent(type);
@@ -61,6 +69,11 @@ public class SceneMaker
     private static string GetScriptName(string sceneName)
     {
         return "%PROJECT_NAME%.View.Scenes." + sceneName + "." + sceneName + "ViewController";
+    }
+
+    private static string GetInstallerName(string sceneName) 
+    {
+        return "%PROJECT_NAME%.View.Scenes." + sceneName + "." + sceneName + "Installer";
     }
 
     private static void AddEventSystem()

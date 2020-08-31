@@ -26,9 +26,12 @@ fun main(args: Array<String>) {
         FileEx.mkdir("02_AndroidLib")
         FileEx.mkdir("03_iOSLib")
         FileEx.mkdir("04_Tools")
-        ResourceLoader.read(UriaResources.Config.CONFIG)?.let { content ->
-            val text = TextFile(UriaResources.Config.CONFIG.output)
-            text.write(content)
+
+        for(config in UriaResources.Config.values()) {
+            ResourceLoader.read(config)?.let { content ->
+                val text = TextFile(config.output)
+                text.write(content)                
+            }
         }
         return;
     }

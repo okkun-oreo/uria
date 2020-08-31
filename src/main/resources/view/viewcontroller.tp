@@ -1,18 +1,19 @@
 using UnityEngine;
+using Zenject;
 
 namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
     /// <summary>
     /// [責務] %PASCAL_NAME%の描画処理
     /// [purpose] View for %PASCAL_NAME%
     /// </summary>
-    [RequireComponent(typeof(%PASCAL_NAME%Presenter))]
     public sealed class %PASCAL_NAME%ViewController : MonoBehaviour, I%PASCAL_NAME%View
     {
+        [Inject]
         private I%PASCAL_NAME%Presenter _presenter;
 
         private void Awake()
         {
-            _presenter = GetComponent<%PASCAL_NAME%Presenter>();
+
         }
 
         private void Start()

@@ -9,6 +9,7 @@ class SceneParser : Parser<SceneData>, StringEx {
     override fun parse(yaml: SceneData, content: String): String {
         var res = content
         res = res.replace("%USING_USE_CASES%", createUsingUseCase(yaml.usecases))
+        res = res.replace("%BINDS_USECASE%", createBindUseCase(yaml.usecases))
         res = res.replace("%DESCRIPTION%", yaml.description)
         res = res.replace("%PROJECT_NAME%", yaml.applicationName.toPascalCase())
         res = res.replace("%PASCAL_NAME%", yaml.sceneName.toPascalCase())
@@ -19,8 +20,16 @@ class SceneParser : Parser<SceneData>, StringEx {
 
     private fun createUsingUseCase(useCases: List<String>) : String {
         val builder = StringBuilder()
-        for (useCase in useCases) {
+        for (useCase in useCases) {            
             builder.appendln("using %PROJECT_NAME%.Domain.UseCase.${useCase.toPascalCase()};")
+        }
+        return builder.toString()
+    }
+
+    private fun createBindUseCase(useCases: List<String>) : String {
+        val builder = StringBuilder()
+        for (useCase in useCases) {
+            builder.appendln("            Container.Bind(typeof(I${useCase.toPascalCase()}UseCase)).To<${useCase.toPascalCase()}UseCase>().AsCached();")
         }
         return builder.toString()
     }
@@ -28,7 +37,7 @@ class SceneParser : Parser<SceneData>, StringEx {
     private fun createUseCase(useCases: List<String>) : String {
         val builder = StringBuilder()
         for (useCase in useCases) {
-            builder.appendln("        [SerializeField] private ${useCase.toPascalCase()}UseCase ${useCase.toCamelCase()}UseCase;")
+            builder.appendln("        [Inject] private ${useCase.toPascalCase()}UseCase ${useCase.toCamelCase()}UseCase;")
         }
         return builder.toString()
     }

@@ -5,7 +5,7 @@ namespace %PROJECT_NAME%.Domain.UseCase.%PASCAL_NAME% {
     /// [責務] %PASCAL_NAME%関連のビジネスロジック
     /// [purpose] Logic for %PASCAL_NAME%
     /// </summary>
-    public sealed class %PASCAL_NAME%UseCaseImpl : %PASCAL_NAME%UseCase {
+    public sealed class %PASCAL_NAME%UseCase : I%PASCAL_NAME%UseCase {
 
     }
 }

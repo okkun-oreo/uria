@@ -12,6 +12,7 @@ java -jar uria.jar init
 java -jar uria.jar config.yaml
 ```
 
-## フォルダ構成について
-
+## 依存ライブラリ
+### Zenject
+https://github.com/modesttree/Zenject/releases/tag/v8.0.0
 
