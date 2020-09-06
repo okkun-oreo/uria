@@ -1,0 +1,52 @@
+using System.Collections.Generic;
+
+namespace %PROJECT_NAME%.Utils.Scene
+{
+    /// <summary>
+    /// シーン間のデータ送受信用
+    /// </summary>
+    public class AppSceneData
+    {
+        private readonly Dictionary<string, object> _datas;
+
+        public AppSceneData()
+        {
+            _datas = new Dictionary<string, object>();
+        }
+
+        public void AddAll(Dictionary<string, object> dict)
+        {
+            if (dict == null)
+            {
+                return;
+            }
+            foreach (var data in dict)
+            {
+                if(_datas.ContainsKey(data.Key))
+                {
+                    Remove(data.Key);
+                }
+                _datas.Add(data.Key, data.Value);
+            }
+        }
+
+        public object FindByKey(string key)
+        {
+            if (_datas.ContainsKey(key))
+            {
+                object obj = _datas[key];
+                Remove(key);
+                return obj;
+            }
+            return null;
+        }
+
+        public void Remove(string key)
+        {
+            if (_datas.ContainsKey(key))
+            {
+                _datas.Remove(key);
+            }
+        }
+    }
+}

@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace %PROJECT_NAME%.Domain.UseCase.%PASCAL_NAME% {
     /// <summary>
-    /// [責務] %PASCAL_NAME%関連のビジネスロジック
     /// [purpose] Logic for %PASCAL_NAME%
     /// </summary>
     public sealed class %PASCAL_NAME%UseCase : I%PASCAL_NAME%UseCase {

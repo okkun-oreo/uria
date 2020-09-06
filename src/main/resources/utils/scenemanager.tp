@@ -1,0 +1,46 @@
+using System.Collections.Generic;
+using System.IO;
+using Sample.Configs;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace %PROJECT_NAME%.Utils.Scene
+{
+    public class AppSceneManager : MonoBehaviour
+    {
+        private static AppSceneManager _instance;
+
+        public static AppSceneManager Instance
+        {
+            get { return _instance; }
+        }
+
+        private readonly AppSceneData _data = new AppSceneData();
+
+        private void Awake()
+        {
+            if (_instance != null)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
+
+        public void Load(Scenes scene, Dictionary<string, object> objs = null)
+        {
+            if (objs != null)
+            {
+                _data.AddAll(objs);
+            }
+            SceneManager.LoadSceneAsync(scene.ToString());
+        }
+
+        public AppSceneData GetData()
+        {
+            return _data;
+        }
+
+    }
+}

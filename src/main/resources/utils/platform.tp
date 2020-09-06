@@ -9,15 +9,16 @@ namespace %PROJECT_NAME%.Utils
             IOS
         }
 
-        public static TYPE GetType()
+        public static TYPE GetOs()
         {
-#if UNITY_ANDROID
+#if UNITY_EDITOR
+            return TYPE.EDITOR;
+#elif UNITY_ANDROID
             return TYPE.ANDROID;
 #elif UNITY_IPHONE
             return TYPE.IOS;
-#else
-            return TYPE.EDITOR;
 #endif
+            return TYPE.EDITOR;
         }
     }
 }

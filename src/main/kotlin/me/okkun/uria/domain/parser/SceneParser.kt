@@ -37,7 +37,7 @@ class SceneParser : Parser<SceneData>, StringEx {
     private fun createUseCase(useCases: List<String>) : String {
         val builder = StringBuilder()
         for (useCase in useCases) {
-            builder.appendln("        [Inject] private ${useCase.toPascalCase()}UseCase ${useCase.toCamelCase()}UseCase;")
+            builder.appendln("        [Inject] private I${useCase.toPascalCase()}UseCase ${useCase.toCamelCase()}UseCase;")
         }
         return builder.toString()
     }

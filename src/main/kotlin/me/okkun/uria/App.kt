@@ -19,7 +19,7 @@ import me.okkun.uria.utils.UriaResources
 import me.okkun.uria.utils.excel.WorkBook
 
 fun main(args: Array<String>) {
-    val path   = args.getOrNull(0) ?: return
+    val path = args.getOrNull(0)
     if(path == "init") {
         FileEx.mkdir("00_Documents")
         FileEx.mkdir("01_Unity")
@@ -36,7 +36,7 @@ fun main(args: Array<String>) {
         return;
     }
     
-    val yaml   = YamlReader(path).read(Config.serializer()) ?: return
+    val yaml   = YamlReader(UriaResources.Config.CONFIG.output).read(Config.serializer()) ?: return
     val uria = PhoenixService()
 
     for (useCase in SceneTranslator.toUseCase(yaml)) {

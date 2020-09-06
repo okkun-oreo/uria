@@ -1,3 +1,4 @@
+./gradlew clean
 ./gradlew build
 mv build/libs/uria-all.jar ~/tools/uria.jar
 
