@@ -21,7 +21,7 @@ class SceneParser : Parser<SceneData>, StringEx {
     private fun createUsingUseCase(useCases: List<String>) : String {
         val builder = StringBuilder()
         for (useCase in useCases) {            
-            builder.appendln("using %PROJECT_NAME%.Domain.UseCase.${useCase.toPascalCase()};")
+            builder.appendLine("using %PROJECT_NAME%.Domain.UseCase.${useCase.toPascalCase()};")
         }
         return builder.toString()
     }
@@ -29,7 +29,7 @@ class SceneParser : Parser<SceneData>, StringEx {
     private fun createBindUseCase(useCases: List<String>) : String {
         val builder = StringBuilder()
         for (useCase in useCases) {
-            builder.appendln("            Container.Bind(typeof(I${useCase.toPascalCase()}UseCase)).To<${useCase.toPascalCase()}UseCase>().AsCached();")
+            builder.appendLine("            Container.Bind(typeof(I${useCase.toPascalCase()}UseCase)).To<${useCase.toPascalCase()}UseCase>().AsCached();")
         }
         return builder.toString()
     }
@@ -37,7 +37,7 @@ class SceneParser : Parser<SceneData>, StringEx {
     private fun createUseCase(useCases: List<String>) : String {
         val builder = StringBuilder()
         for (useCase in useCases) {
-            builder.appendln("        [Inject] private I${useCase.toPascalCase()}UseCase ${useCase.toCamelCase()}UseCase;")
+            builder.appendLine("        [Inject] private I${useCase.toPascalCase()}UseCase ${useCase.toCamelCase()}UseCase;")
         }
         return builder.toString()
     }

@@ -19,6 +19,14 @@ class AddService(private val args: Array<String>) {
     val index = inputReader.question("以下から選択してください", addList)
     if (index == 0) {
       val name   = inputReader.question("シーン名を入力してください")
+      val scenes = config.unity.scenes
+      if (scenes != null) {
+        for (scene in config.unity.scenes) {
+          if (name.toUpperCase() == scene.name.toUpperCase()) {
+            throw UriaException(ErrorCode.E1004)
+          }
+        }
+      }
       config.unity.scenes?.add(SceneEntity(name, "", listOf()))
       gson.write(config)
     }

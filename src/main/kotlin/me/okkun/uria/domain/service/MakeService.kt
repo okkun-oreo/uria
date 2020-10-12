@@ -23,6 +23,7 @@ class MakeService(private val args: Array<String>) {
         phoenix.execute(scene, value.indexes, SceneParser())
       }
     }
+    println("完了しました!")
   }
 
 
