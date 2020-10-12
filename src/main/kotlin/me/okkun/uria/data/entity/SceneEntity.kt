@@ -1,10 +1,16 @@
 package me.okkun.uria.data.entity
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
+import java.util.*
 
-@Serializable
 data class SceneEntity(
-        val name: String,
-        val description: String,
-        val usecases: List<String>
+  @SerializedName("name")
+  val name: String,
+  @SerializedName("description")
+  val description: String,
+  @SerializedName("usecases")
+  val usecases: List<String>,
+  @SerializedName("uuid")
+  val uuid: String = UUID.randomUUID().toString()
 )

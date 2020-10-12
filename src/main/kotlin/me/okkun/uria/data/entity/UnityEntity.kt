@@ -1,11 +1,10 @@
 package me.okkun.uria.data.entity
 
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class UnityEntity(
-        val applicationName: String,
-        val scenes: List<SceneEntity>?,
-        val masters: List<MasterDataEntity>?,
-        val models: List<DomainModelEntity>?
+  @SerializedName("application_name")
+  val applicationName: String,
+  @SerializedName("scenes")
+  val scenes: MutableList<SceneEntity>?
 )
