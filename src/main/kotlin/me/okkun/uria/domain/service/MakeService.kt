@@ -8,7 +8,9 @@ import com.okkun.common.utils.reader.GsonUtility
 import me.okkun.uria.Constants
 import me.okkun.uria.data.entity.Config
 import me.okkun.uria.domain.parser.SceneParser
+import me.okkun.uria.domain.parser.UtilsParser
 import me.okkun.uria.translator.SceneTranslator
+import me.okkun.uria.translator.UtilsTranslator
 import me.okkun.uria.utils.UriaResources
 import me.okkun.uria.utils.exception.ErrorCode
 import me.okkun.uria.utils.exception.UriaException
@@ -23,7 +25,11 @@ class MakeService(private val args: Array<String>) {
         phoenix.execute(scene, value.indexes, SceneParser())
       }
     }
-    println("完了しました!")
+
+    GsonUtility(Constants.UTIL_INDEXES_FILE).readResource(IndexesEntity::class.java)?.let { value ->
+      val utils = UtilsTranslator.to(config)
+      phoenix.execute(utils, value.indexes, UtilsParser())
+    }
   }
 
 

@@ -11,13 +11,17 @@ import me.okkun.uria.utils.exception.UriaException
 
 class AddService(private val args: Array<String>) {
 
-
-  fun execute(type: String?) {
+  fun execute() {
     val gson = GsonUtility(Constants.CONFIG_PATH)
     val config = gson.read(Config::class.java) ?: throw UriaException(ErrorCode.E1003)
     val inputReader = InputReader()
-    val index = inputReader.question("以下から選択してください", addList)
-    if (index == 0) {
+    var type = getType(args.getOrNull(1))
+    if (type == Type.UNKNOWN) {
+      val index = inputReader.question("以下から選択してください", addList)
+      type = getType(addList[index])
+    }
+
+    if (type == Type.SCENE) {
       val name   = inputReader.question("シーン名を入力してください")
       val scenes = config.unity.scenes
       if (scenes != null) {
@@ -44,6 +48,27 @@ class AddService(private val args: Array<String>) {
 //      yaml.unity.scenes?.add(SceneEntity(name, desc, listOf()))
 //      yamlUtility.write(Config.serializer(), yaml)
 //    }
+  }
+
+
+  private fun getType(str: String?) : Type {
+    val value = str ?: return Type.UNKNOWN
+    when(value) {
+      "scene" -> {
+        return Type.SCENE
+      }
+      "usecase" -> {
+        return Type.USE_CASE
+      }
+    }
+    return Type.UNKNOWN
+  }
+
+
+  enum class Type {
+    SCENE,
+    USE_CASE,
+    UNKNOWN
   }
 
   companion object {

@@ -3,6 +3,7 @@
  */
 package me.okkun.uria
 
+import com.okkun.common.utils.exception.PhoenixException
 import me.okkun.uria.domain.service.AddService
 import me.okkun.uria.domain.service.InitService
 import me.okkun.uria.domain.service.MakeService
@@ -20,16 +21,17 @@ fun main(args: Array<String>) {
             }
             CommandType.ADD -> {
                 val addService = AddService(args)
-                addService.execute(args.getOrNull(1))
+                addService.execute()
             }
             CommandType.MAKE -> {
                 val makeService = MakeService(args)
                 makeService.execute()
             }
-            CommandType.OTHER -> {
-            }
         }
+        println("完了しました!!")
     } catch (e: UriaException) {
+        println(e.message)
+    } catch (e: PhoenixException) {
         println(e.message)
     }
 }

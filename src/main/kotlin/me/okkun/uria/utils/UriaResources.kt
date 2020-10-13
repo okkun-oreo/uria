@@ -5,14 +5,7 @@ import com.okkun.common.utils.Resources
 interface UriaResources {
     enum class Config(override val input: String, override val output: String) : Resources {
         CONFIG("config.yaml", "04_Tools/config.yaml"),
-        ZENJECT("README.md", "00_Documents/README.md")
-    }
-
-    enum class View(override val input: String, override val output: String) : Resources {
-        CONTROLLER("view/viewcontroller.tp", "04_Tools/Assets/Scripts/%PROJECT_NAME%/View/Scenes/%PASCAL_NAME%/%PASCAL_NAME%ViewController.cs"),
-        CONTRUCT("view/contruct.tp", "04_Tools/Assets/Scripts/%PROJECT_NAME%/View/Scenes/%PASCAL_NAME%/%PASCAL_NAME%Contruct.cs"),
-        PRESENTER("view/presenter.tp", "04_Tools/Assets/Scripts/%PROJECT_NAME%/View/Scenes/%PASCAL_NAME%/%PASCAL_NAME%Presenter.cs"),
-        VIEW_INSTALLER("view/viewinstaller.tp", "04_Tools/Assets/Scripts/%PROJECT_NAME%/View/Scenes/%PASCAL_NAME%/%PASCAL_NAME%Installer.cs")
+        ZENJECT("init/README.md", "00_Documents/README.md")
     }
 
     enum class UseCase(override val input: String, override val output: String) : Resources {

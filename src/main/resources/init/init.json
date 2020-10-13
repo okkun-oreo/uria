@@ -1,0 +1,10 @@
+{
+  "indexes" :
+  [
+    {
+      "template_path": "init/README.md",
+      "output_path": "00_Documents/README.md",
+      "is_override": false
+    }
+  ]
+}
