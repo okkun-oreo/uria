@@ -1,11 +1,48 @@
+using Sample.Attributes;
 
-namespace %PROJECT_NAME%.Configs {
-    
-    public enum ErrorType {
-        INVALID_ARGUMENT,
-
-
+namespace %PROJECT_NAME%.Configs.Exception
+{
+    public enum ErrorCode
+    {
+        [StringValue("通信に失敗しました。ネットワーク環境を確認してください。")]
+        E1001,
+        [StringValue("通信に失敗しました。時間を空けて再度お試しください。")]
+        E1002,
+        [StringValue("")]
+        E1003,
+        [StringValue("")]
+        E1004,
+        [StringValue("")]
+        E1005,
+        [StringValue("")]
+        E1006,
+        [StringValue("")]
+        E1007,
+        [StringValue("")]
+        E1008,
+        [StringValue("")]
+        E1009,
+        [StringValue("")]
+        E1010,
+        [StringValue("")]
+        E2001,
+        [StringValue("")]
+        E2002,
+        [StringValue("")]
+        E2003,
+        [StringValue("")]
+        E2004,
+        [StringValue("")]
+        E2005,
+        [StringValue("")]
+        E2006,
+        [StringValue("")]
+        E2007,
+        [StringValue("")]
+        E2008,
+        [StringValue("")]
+        E2009,
+        [StringValue("")]
+        E2010
     }
-
-
 }

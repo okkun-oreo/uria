@@ -1,5 +1,3 @@
-./gradlew clean
-./gradlew build
-mv build/libs/uria-all.jar ~/tools/uria.jar
-
-echo "please add alias uria='java -jar ~/tools/uria.jar'"
+./gradlew clean build
+cp build/libs/uria-all.jar ~/tools/uria.jar
+chown `whoami` ~/tools/uria.jar

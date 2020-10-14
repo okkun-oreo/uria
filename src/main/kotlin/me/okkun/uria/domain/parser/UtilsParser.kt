@@ -9,6 +9,7 @@ class UtilsParser : Parser<UtilData>, StringEx {
 
     override fun parse(yaml: UtilData, content: String): String {
         var res = content
+        res = res.replace("%OUT_DIR%", yaml.outDir)
         res = res.replace("%PROJECT_NAME%", yaml.applicationName.toPascalCase())
         res = res.replace("%ENM_SCENES%", makeEnm(yaml.scenes))
         return res

@@ -6,7 +6,7 @@ namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
 
     public interface I%PASCAL_NAME%Presenter : IPresenter
     {
-
+        void Init(); // 画面生成時に必要な処理
     }
 
 }

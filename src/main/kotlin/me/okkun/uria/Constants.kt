@@ -13,6 +13,7 @@ class Constants {
     const val TOOLS_DIR    = "04_Tools"
     const val CONFIG_PATH  = "${TOOLS_DIR}/config.json"
     const val README_PATH  = "${DOCUMENT_DIR}/README.md"
+
   }
 
 }

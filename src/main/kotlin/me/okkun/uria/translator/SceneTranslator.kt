@@ -10,7 +10,7 @@ class SceneTranslator {
             val scenes = yaml.unity.scenes ?: return listOf()
             val mtList = mutableListOf<SceneData>()
             for (scene in scenes) {
-                mtList.add(SceneData(yaml.unity.applicationName, scene.name, scene.description, scene.usecases))
+                mtList.add(SceneData(yaml.unity.applicationName, yaml.unity.outDir, scene.name, scene.description, scene.usecases))
             }
             return mtList
         }

@@ -1,13 +1,15 @@
-using %PROJECT_NAME%.Configs;
+using %PROJECT_NAME%.Attributes;
 
-namespace %PROJECT_NAME%.Utils.Exception {
+namespace %PROJECT_NAME%.Configs.Exception
+{
+    public sealed class AppException : System.Exception
+    {
+        public readonly ErrorCode code;
 
-    public sealed class %PROJECT_NAME%Exception : System.Exception {
-        public readonly ErrorType type;
-
-        public %PROJECT_NAME%Exception(ErrorType type) {
-            this.type = type;
+        public AppException(ErrorCode code) : base(code.GetStringValue())
+        {
+            this.code = code;
         }
-    }
 
+    }
 }

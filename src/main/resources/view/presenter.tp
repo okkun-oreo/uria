@@ -1,5 +1,6 @@
 using UnityEngine;
 using Zenject;
+using %PROJECT_NAME%.Configs.Exception;
 %USING_USE_CASES%
 
 
@@ -13,6 +14,15 @@ namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
         private I%PASCAL_NAME%View _view;
         
 %USECASES%
+
+        public void Init()
+        {
+            try {
+                // 画面生成された時にしたいことを記述
+            } catch (AppException ex) {
+
+            }
+        }
 
     }
 }

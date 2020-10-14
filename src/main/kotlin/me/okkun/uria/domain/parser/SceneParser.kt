@@ -8,6 +8,7 @@ import me.okkun.uria.domain.model.SceneData
 class SceneParser : Parser<SceneData>, StringEx {
     override fun parse(yaml: SceneData, content: String): String {
         var res = content
+        res = res.replace("%OUT_DIR%", yaml.outDir)
         res = res.replace("%USING_USE_CASES%", createUsingUseCase(yaml.usecases))
         res = res.replace("%BINDS_USECASE%", createBindUseCase(yaml.usecases))
         res = res.replace("%DESCRIPTION%", yaml.description)

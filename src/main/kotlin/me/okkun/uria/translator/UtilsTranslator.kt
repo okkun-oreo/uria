@@ -8,7 +8,7 @@ class UtilsTranslator {
     companion object {
         fun to(yaml: Config) : UtilData {
             val scenes = SceneTranslator.to(yaml)
-            return UtilData(yaml.unity.applicationName, scenes)
+            return UtilData(yaml.unity.applicationName, yaml.unity.outDir, scenes)
         }
     }
 }

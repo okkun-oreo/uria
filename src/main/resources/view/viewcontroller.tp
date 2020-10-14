@@ -13,11 +13,11 @@ namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
         private void Awake()
         {
 
+            _presenter.Init();
         }
 
         private void Start()
         {
-
         }
 
         public void ShowProgress()
