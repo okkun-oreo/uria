@@ -3,18 +3,19 @@
  */
 package me.okkun.uria
 
+import com.okkun.common.domain.model.CommandType
+import com.okkun.common.domain.service.CommandServiceImpl
 import com.okkun.common.utils.exception.PhoenixException
 import me.okkun.uria.domain.service.AddService
 import me.okkun.uria.domain.service.InitService
 import me.okkun.uria.domain.service.MakeService
-import me.okkun.uria.utils.cli.Command
-import me.okkun.uria.utils.cli.CommandType
 import me.okkun.uria.utils.exception.UriaException
 
 fun main(args: Array<String>) {
     try {
-        val command = Command(args.getOrNull(0))
-        when (command.getType()) {
+        val commandService = CommandServiceImpl()
+        val command = commandService.command(args)
+        when (command.type) {
             CommandType.INIT -> {
                 val initService = InitService(args)
                 initService.execute()

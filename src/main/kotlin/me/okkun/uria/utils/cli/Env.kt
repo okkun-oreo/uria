@@ -2,7 +2,6 @@ package me.okkun.uria.utils.cli
 
 import me.okkun.uria.utils.exception.ErrorCode
 import me.okkun.uria.utils.exception.UriaException
-import sun.rmi.runtime.Log
 import java.nio.file.Paths
 
 class Env {
