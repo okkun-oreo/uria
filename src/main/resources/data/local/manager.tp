@@ -1,0 +1,80 @@
+using System;
+using UnityEngine;
+
+namespace %PROJECT_NAME%.Data.Local
+{
+    public class LocalDataManager : ILocalDataManager
+    {
+        private static LocalDataManager _instance;
+
+        public static LocalDataManager I
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new LocalDataManager();
+                }
+                return _instance;
+            }
+        }
+
+        private LocalDataManager() { }
+
+        public bool Exists(string key)
+        {
+            return PlayerPrefs.HasKey(key);
+        }
+
+
+        public void Save<T>(string key, T obj)
+        {
+            try
+            {
+                string json = JsonUtility.ToJson(obj);
+                PlayerPrefs.SetString(key, json);
+                PlayerPrefs.Save();
+            }
+            catch (PlayerPrefsException exception)
+            {
+                throw new DataManagerException(DataManagerError.MaxStorage, exception);
+            }
+            catch (Exception exception)
+            {
+                throw new DataManagerException(DataManagerError.Unknown, exception);
+            }
+        }
+
+
+        public void Delete(string key)
+        {
+            try
+            {
+                PlayerPrefs.DeleteKey(key);
+            }
+            catch (Exception exception)
+            {
+                throw new DataManagerException(DataManagerError.Unknown, exception);
+            }
+        }
+
+        public T Read<T>(string key)
+        {
+            if (!Exists(key))
+            {
+                throw new DataManagerException(DataManagerError.NotExists);
+            }
+
+            try
+            {
+                string json = PlayerPrefs.GetString(key);
+                return JsonUtility.FromJson<T>(json);
+            }
+            catch (Exception exception)
+            {
+                throw new DataManagerException(DataManagerError.Unknown, exception);
+            }
+        }
+
+    }
+}

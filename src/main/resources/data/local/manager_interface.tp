@@ -1,0 +1,12 @@
+using System;
+
+namespace %PROJECT_NAME%.Data.Local
+{
+    public interface ILocalDataManager
+    {
+        void Save<T>(string key, T obj);
+        bool Exists(string key);
+        void Delete(string key);
+        T Read<T>(string key);
+    }
+}

@@ -1,0 +1,10 @@
+using System;
+
+namespace %PROJECT_NAME%.Data.Local.%PASCAL_NAME%.Entity
+{
+    [Serializable]
+    public class %PASCAL_NAME%Entity
+    {
+        // please add params for entity
+    }
+}
