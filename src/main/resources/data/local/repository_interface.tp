@@ -1,0 +1,11 @@
+namespace %PROJECT_NAME%.Data.Local.%PASCAL_NAME%.Repository
+{
+    public interface I%PASCAL_NAME%Repository
+    {
+        bool Exists();
+        void Create(%PASCAL_NAME%Entity entity);
+        void Update(%PASCAL_NAME%Entity entity);
+        %PASCAL_NAME%Entity Read();
+        void Delete();
+    }
+}

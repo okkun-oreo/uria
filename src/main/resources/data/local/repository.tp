@@ -1,0 +1,40 @@
+using System;
+using JetBrains.Annotations;
+using UnityEngine;
+
+namespace %PROJECT_NAME%.Data.Local.%PASCAL_NAME%.Repository
+{
+    public class %PASCAL_NAME%Repository : I%PASCAL_NAME%Repository
+    {
+        private const string Key%PASCAL_NAME%Entity = "Key%PASCAL_NAME%Entity";
+
+        public bool Exists()
+        {
+            return LocalDataManager.I.Exists(Key%PASCAL_NAME%Entity);
+        }
+
+        public void Create(%PASCAL_NAME%Entity entity)
+        {
+            if (LocalDataManager.I.Exists(Key%PASCAL_NAME%Entity)) {
+                throw new DataManagerException(DataManagerError.AlreadyExists);
+            }
+            LocalDataManager.I.Save(Key%PASCAL_NAME%Entity, entity);
+        }
+
+        public void Update(%PASCAL_NAME%Entity entity)
+        {
+            LocalDataManager.I.Save(Key%PASCAL_NAME%Entity, entity);
+        }
+
+        public void Delete()
+        {
+            LocalDataManager.I.Delete(Key%PASCAL_NAME%Entity);
+        }
+
+        public %PASCAL_NAME%Entity Read()
+        {
+            return LocalDataManager.I.Read<%PASCAL_NAME%Entity>(Key%PASCAL_NAME%Entity);
+        }
+
+    }
+}
