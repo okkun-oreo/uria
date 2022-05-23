@@ -1,86 +1,45 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
+using %PROJECT_NAME%.Editor.Unity;
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using %PROJECT_NAME%.Configs;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using Zenject;
 
 public class SceneMaker
 {
-    [MenuItem("Sample/Scenes/Create")]
+    [MenuItem("%PROJECT_NAME%/Scenes/Create")]
     public static void Create()
     {
         var scenes = Enum.GetValues(typeof(Scenes));
 
         List<EditorBuildSettingsScene> settingsScenes = new List<EditorBuildSettingsScene>();
 
-        foreach (var sceneName in scenes)
+        foreach (Scenes scene in scenes)
         {
-            string strSceneName = sceneName.ToString();
-            string folder = "Assets/Scenes/" + strSceneName + "/";
-            
-            if (!Directory.Exists(folder))
+
+            UnitySceneBuilder sceneBuilder = new UnitySceneBuilder(scene);
+            if (sceneBuilder.ShouldSave())
             {
-                Directory.CreateDirectory(folder);
-                AssetDatabase.Refresh();
-            }
-
-            string path = folder + strSceneName + ".unity";
-            if (!File.Exists(path))
-            {
-                var scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects);
-                var controller = new GameObject(strSceneName + "ViewController");
-                Type type = GetType(GetScriptName(strSceneName));
-
-                var installer = new GameObject(strSceneName + "Installer");
-                MonoInstaller monoInstaller = installer.AddComponent(GetType(GetInstallerName(strSceneName))) as MonoInstaller;
-                
-                var context = new GameObject("SceneContext");
-                SceneContext sceneContext = context.AddComponent<SceneContext>();
-                sceneContext.Installers = new []{ monoInstaller };
-
-                if (type != null)
-                {
-                    controller.AddComponent(type);
-                    
-                    AddCanvas("MainLayer", 10);
-                    AddCanvas("SubLayer", 20);
-                    AddCanvas("DialogLayer", 30);                
-                    AddEventSystem();
-                    
-                    EditorSceneManager.SaveScene(scene, path);
-                    Debug.Log("作成しました: " + strSceneName);
-                }
+                sceneBuilder.AddGameObject(scene + "ViewController");
+                EditorBuildSettingsScene newScene = sceneBuilder.Save();
+                settingsScenes.Add(newScene);
+                Debug.Log("作成しました: " + scene);
             }
             else
             {
-                Debug.Log("既に作成済です: " + strSceneName);
+                Debug.Log("既に作成済です: " + scene);
             }
-            settingsScenes.Add(new EditorBuildSettingsScene(path, true));
         }
         EditorBuildSettings.scenes = settingsScenes.ToArray();
         AssetDatabase.SaveAssets();
     }
 
-    private static string GetScriptName(string sceneName)
-    {
-        return "%PROJECT_NAME%.View.Scenes." + sceneName + "." + sceneName + "ViewController";
-    }
-
-    private static string GetInstallerName(string sceneName) 
-    {
-        return "%PROJECT_NAME%.View.Scenes." + sceneName + "." + sceneName + "Installer";
-    }
-
+/*
     private static void AddEventSystem()
     {
         GameObject obj = new GameObject("EventSystem");
         obj.AddComponent<EventSystem>();
-        obj.AddComponent<StandaloneInputModule>();        
+        obj.AddComponent<StandaloneInputModule>();
     }
 
     private static void AddCanvas(string name, int priority)
@@ -94,19 +53,7 @@ public class SceneMaker
         CanvasScaler scaler = canvasObj.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1920, 1080);
-        canvasObj.AddComponent<GraphicRaycaster>();        
+        canvasObj.AddComponent<GraphicRaycaster>();
     }
-    
-    private static Type GetType(string scriptName)
-    {
-        var type = Type.GetType(scriptName);
-        if (type != null) return type;
-        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-        {
-            type = assembly.GetType(scriptName);
-            if (type != null)
-                return type;
-        }
-        return null;
-    }   
+*/
 }

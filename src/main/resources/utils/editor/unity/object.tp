@@ -1,0 +1,32 @@
+using System;
+using UnityEngine;
+
+namespace %PROJECT_NAME%.Editor.Unity
+{
+    internal class UnityGameObject : IUnityGameObject
+    {
+        private readonly string _objectName;
+
+        public UnityGameObject(string objectName)
+        {
+            _objectName = objectName;
+        }
+
+        private string GetScriptName(string objectName)
+        {
+            return UnitySceneUtility.ViewNameSpace + objectName + "." + objectName;
+        }
+
+        public GameObject CreateGameObject()
+        {
+            GameObject gameObject = new GameObject(_objectName);
+            var type = UnitySceneUtility.GetScriptType(GetScriptName(_objectName));
+            if(type != null)
+            {
+                gameObject.AddComponent(type);
+            }
+            return gameObject;
+        }
+
+    }
+}

@@ -1,4 +1,4 @@
-using Sample.Attributes;
+using %PROJECT_NAME%.Attributes;
 
 namespace %PROJECT_NAME%.Configs.Exception
 {

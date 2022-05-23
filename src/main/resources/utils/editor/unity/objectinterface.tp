@@ -1,0 +1,10 @@
+using System;
+using UnityEngine;
+
+namespace %PROJECT_NAME%.Editor.Unity
+{
+    internal interface IUnityGameObject
+    {
+        GameObject CreateGameObject();
+    }
+}

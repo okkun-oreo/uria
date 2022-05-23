@@ -1,5 +1,5 @@
 namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
-    public interface I%PASCAL_NAME%View : IView
+    public interface I%PASCAL_NAME%View : IViewController
     {
         
     }

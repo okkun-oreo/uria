@@ -1,0 +1,25 @@
+using System;
+
+namespace %PROJECT_NAME%.Editor.Unity
+{
+    internal static class UnitySceneUtility
+    {
+        private const string ProjectName =  "%PROJECT_NAME%";
+        public const string ViewNameSpace = ProjectName + ".View.Scenes.";
+
+        public static Type GetScriptType(string scriptName)
+        {
+            var type = Type.GetType(scriptName);
+            if (type != null) return type;
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                type = assembly.GetType(scriptName);
+                if (type != null)
+                    return type;
+            }
+
+            return null;
+        }
+
+    }
+}

@@ -30,11 +30,12 @@ class InitService(private val args: Array<String>) : StringEx {
     val inputReader = InputReader()
     val name = inputReader.question("プロジェクト名を入力してください")
 
-    val unityPath  = Env.getUnityPath()
-    val workingDir = Env.getWorkingDir()
     val path       = "${Constants.UNITY_DIR}/${name.toPascalCase()}"
-    val command = "${unityPath} -createProject ${workingDir}/${path}/ -quit"
+
     try {
+      val unityPath  = Env.getUnityPath()
+      val workingDir = Env.getWorkingDir()
+      val command = "${unityPath} -createProject ${workingDir}/${path}/ -quit"
       Runtime.getRuntime().exec(command)
     } catch (e: Exception) {
       println(e.message)

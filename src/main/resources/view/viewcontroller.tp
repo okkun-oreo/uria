@@ -5,7 +5,7 @@ namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
     /// <summary>
     /// [purpose] View for %PASCAL_NAME%
     /// </summary>
-    public sealed class %PASCAL_NAME%ViewController : MonoBehaviour, I%PASCAL_NAME%View
+    public sealed class %PASCAL_NAME%ViewController : MonoBehaviour, I%PASCAL_NAME%ViewController
     {
         [Inject]
         private I%PASCAL_NAME%Presenter _presenter;

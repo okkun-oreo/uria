@@ -22,8 +22,38 @@
       "is_override": true
     },
     {
+      "template_path": "utils/editor/unity/builder.tp",
+      "output_path": "%OUT_DIR%/Assets/%PROJECT_NAME%/Editor/Unity/UnitySceneBuilder.cs",
+      "is_override": true
+    },
+    {
+      "template_path": "utils/editor/unity/objectinterface.tp",
+      "output_path": "%OUT_DIR%/Assets/%PROJECT_NAME%/Editor/Unity/IUnityGameObject.cs",
+      "is_override": true
+    },
+    {
+      "template_path": "utils/editor/unity/scene.tp",
+      "output_path": "%OUT_DIR%/Assets/%PROJECT_NAME%/Editor/Unity/UnityScene.cs",
+      "is_override": true
+    },
+    {
+      "template_path": "utils/editor/unity/utility.tp",
+      "output_path": "%OUT_DIR%/Assets/%PROJECT_NAME%/Editor/Unity/UnitySceneUtility.cs",
+      "is_override": true
+    },
+    {
+      "template_path": "utils/editor/unity/zenject.tp",
+      "output_path": "%OUT_DIR%/Assets/%PROJECT_NAME%/Editor/Unity/ZenjectInstallerObject.cs",
+      "is_override": true
+    },
+    {
+      "template_path": "utils/editor/unity/object.tp",
+      "output_path": "%OUT_DIR%/Assets/%PROJECT_NAME%/Editor/Unity/UnityGameObject.cs",
+      "is_override": true
+    },
+    {
       "template_path": "utils/editor/scenemaker.tp",
-      "output_path": "%OUT_DIR%/Assets/Editor/%PROJECT_NAME%/SceneMaker.cs",
+      "output_path": "%OUT_DIR%/Assets/%PROJECT_NAME%/Editor/SceneMaker.cs",
       "is_override": true
     },
     {

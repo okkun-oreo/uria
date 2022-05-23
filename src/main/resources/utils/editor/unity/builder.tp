@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using OculusSampleProject.Configs;
+using UnityEditor;
+using UnityEngine;
+
+namespace %PROJECT_NAME%.Editor.Unity
+{
+    public class UnitySceneBuilder
+    {
+        private readonly UnityScene _scene;
+        private readonly List<IUnityGameObject> _objects;
+
+        public UnitySceneBuilder(Scenes scene)
+        {
+            _scene = new UnityScene(scene);
+            _scene.CreateDirectory();
+            _objects = new List<IUnityGameObject>();
+            _objects.Add(new ZenjectInstallerObject(scene.ToString()));
+        }
+
+        public void AddGameObject(string objectName)
+        {
+            UnityGameObject gameObject = new UnityGameObject(objectName);
+            _objects.Add(gameObject);
+        }
+
+        public bool ShouldSave()
+        {
+            return !_scene.Exists();
+        }
+
+        public EditorBuildSettingsScene Save()
+        {
+            _scene.Save(_objects);
+            return new EditorBuildSettingsScene(_scene.SavePath, true);
+        }
+
+
+    }
+}

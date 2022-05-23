@@ -1,0 +1,37 @@
+using UnityEngine;
+using Zenject;
+
+namespace %PROJECT_NAME%.Editor.Unity
+{
+    public class ZenjectInstallerObject : IUnityGameObject
+    {
+        private readonly string _sceneName;
+
+        public ZenjectInstallerObject(string sceneName)
+        {
+            _sceneName = sceneName;
+        }
+
+        private string GetInstallerName()
+        {
+            return UnitySceneUtility.ViewNameSpace + _sceneName + "." + _sceneName + "Installer";
+        }
+
+        public GameObject CreateGameObject()
+        {
+            UnityGameObject installer = new UnityGameObject(_sceneName + "Installer");
+            GameObject installerObject  = installer.CreateGameObject();
+            MonoInstaller monoInstaller = installerObject.GetComponent<MonoInstaller>();
+            GameObject context = new GameObject("SceneContext");
+            SceneContext sceneContext = context.AddComponent<SceneContext>();
+            sceneContext.Installers = new[]
+            {
+                monoInstaller
+            };
+            GameObject zenject = new GameObject("Zenject");
+            installerObject.transform.parent = zenject.transform;
+            context.transform.parent = zenject.transform;
+            return zenject;
+        }
+    }
+}

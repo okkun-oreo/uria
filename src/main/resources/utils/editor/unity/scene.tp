@@ -1,0 +1,63 @@
+using System.Collections.Generic;
+using System.IO;
+using OculusSampleProject.Configs;
+using Unity.IO.LowLevel.Unsafe;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace  %PROJECT_NAME%.Editor.Unity
+{
+    internal class UnityScene
+    {
+        private readonly string _folderPath;
+        public readonly string SavePath;
+        public readonly string SceneName;
+        private Scene _scene;
+
+
+
+        public UnityScene(Scenes scene)
+        {
+            SceneName  = scene.ToString();
+            _folderPath = "Assets/Scenes/" + SceneName + "/";
+            SavePath = _folderPath + SceneName + ".unity";
+        }
+
+        public void CreateDirectory()
+        {
+            if (!Directory.Exists(_folderPath))
+            {
+                Directory.CreateDirectory(_folderPath);
+                AssetDatabase.Refresh();
+            }
+        }
+
+        public void NewScene()
+        {
+            _scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects);
+        }
+
+        public bool Exists()
+        {
+            return File.Exists(SavePath);
+        }
+
+        public void Save(List<IUnityGameObject> gameObjects)
+        {
+            if (!Exists())
+            {
+                NewScene();
+
+                foreach (var gameObject in gameObjects)
+                {
+                    gameObject.CreateGameObject();
+                }
+                Debug.Log(SavePath);
+                EditorSceneManager.SaveScene(_scene, SavePath);
+            }
+        }
+
+    }
+}
