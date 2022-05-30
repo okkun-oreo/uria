@@ -17,7 +17,17 @@
     },
     {
       "template_path": "view/viewinstaller.tp",
-      "output_path" : "%OUT_DIR%/Assets/Scripts/%PROJECT_NAME%/View/Scenes/%PASCAL_NAME%/%PASCAL_NAME%Installer.cs",
+      "output_path" : "%OUT_DIR%/Assets/Scripts/%PROJECT_NAME%/View/Zenject/%PASCAL_NAME%ViewInstaller.cs",
+      "is_override": true
+    },
+    {
+      "template_path": "view/domain_installer.tp",
+      "output_path" : "%OUT_DIR%/Assets/Scripts/%PROJECT_NAME%/Domain/Zenject/%PASCAL_NAME%DomainInstaller.cs",
+      "is_override": true
+    },
+    {
+      "template_path": "view/viewinstaller.tp",
+      "output_path" : "%OUT_DIR%/Assets/Scripts/%PROJECT_NAME%/Data/Zenject/%PASCAL_NAME%DataInstaller.cs",
       "is_override": true
     }
   ]

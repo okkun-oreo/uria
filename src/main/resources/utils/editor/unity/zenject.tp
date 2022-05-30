@@ -19,19 +19,26 @@ namespace %PROJECT_NAME%.Editor.Unity
 
         public GameObject CreateGameObject()
         {
-            UnityGameObject installer = new UnityGameObject(_sceneName + "Installer");
-            GameObject installerObject  = installer.CreateGameObject();
-            MonoInstaller monoInstaller = installerObject.GetComponent<MonoInstaller>();
+            GameObject zenject = new GameObject("Zenject");
+
+            List<MonoInstaller> installers = new List<MonoInstaller>();
+            installers.Add(CreateMonoInstaller(zenject.transform, _sceneName, "View"));
+            installers.Add(CreateMonoInstaller(zenject.transform, _sceneName, "Domain"));
+            installers.Add(CreateMonoInstaller(zenject.transform, _sceneName, "Data"));
+
             GameObject context = new GameObject("SceneContext");
             SceneContext sceneContext = context.AddComponent<SceneContext>();
-            sceneContext.Installers = new[]
-            {
-                monoInstaller
-            };
-            GameObject zenject = new GameObject("Zenject");
-            installerObject.transform.parent = zenject.transform;
+            sceneContext.Installers = installers;
             context.transform.parent = zenject.transform;
             return zenject;
+        }
+
+        private MonoInstaller CreateMonoInstaller(Transform parent, string sceneName, string name)
+        {
+            UnityGameObject installer = new UnityGameObject(sceneName, sceneName + name + "Installer");
+            GameObject installerObject = installer.CreateGameObject();
+            installerObject.transform.parent = parent;
+            return installerObject.GetComponent<MonoInstaller>();
         }
     }
 }

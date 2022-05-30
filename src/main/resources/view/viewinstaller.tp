@@ -1,22 +1,16 @@
 using UnityEngine;
 using Zenject;
-%USING_USE_CASES%
 
-namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME%
+namespace %PROJECT_NAME%.View.Zenject
 {
-    public sealed class %PASCAL_NAME%Installer : MonoInstaller
+    public sealed class %PASCAL_NAME%ViewInstaller : MonoInstaller
     {
         [SerializeField] private %PASCAL_NAME%ViewController vc = null;
 
         public override void InstallBindings()
         {
-            if(vc == null) {
-                throw new System.Exception("please set vc for Zenject");
-            }
             // ViewController
             Container.Bind(typeof(I%PASCAL_NAME%View)).FromInstance(vc).AsCached();
-
-%BINDS_USECASE%
 
             // Presenter
             Container.Bind(typeof(I%PASCAL_NAME%Presenter)).To<%PASCAL_NAME%Presenter>().AsCached();

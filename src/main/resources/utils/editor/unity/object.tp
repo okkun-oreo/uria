@@ -5,28 +5,29 @@ namespace %PROJECT_NAME%.Editor.Unity
 {
     internal class UnityGameObject : IUnityGameObject
     {
+        private readonly string _sceneName;
         private readonly string _objectName;
 
-        public UnityGameObject(string objectName)
+        public UnityGameObject(string sceneName, string objectName)
         {
+            _sceneName  = sceneName;
             _objectName = objectName;
         }
 
-        private string GetScriptName(string objectName)
+        private string GetScriptName()
         {
-            return UnitySceneUtility.ViewNameSpace + objectName + "." + objectName;
+            return UnitySceneUtility.ViewNameSpace + _sceneName + "." + _objectName;
         }
 
         public GameObject CreateGameObject()
         {
             GameObject gameObject = new GameObject(_objectName);
-            var type = UnitySceneUtility.GetScriptType(GetScriptName(_objectName));
+            var type = UnitySceneUtility.GetScriptType(GetScriptName());
             if(type != null)
             {
                 gameObject.AddComponent(type);
             }
             return gameObject;
         }
-
     }
 }

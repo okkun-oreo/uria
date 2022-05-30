@@ -21,7 +21,7 @@ namespace %PROJECT_NAME%.Editor.Unity
 
         public void AddGameObject(string objectName)
         {
-            UnityGameObject gameObject = new UnityGameObject(objectName);
+            UnityGameObject gameObject = new UnityGameObject(_scene.SceneName, objectName);
             _objects.Add(gameObject);
         }
 

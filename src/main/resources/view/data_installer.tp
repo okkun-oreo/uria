@@ -1,0 +1,12 @@
+using UnityEngine;
+using Zenject;
+
+namespace %PROJECT_NAME%.Data.Zenject
+{
+    public sealed class %PASCAL_NAME%DataInstaller : MonoInstaller
+    {
+        public override void InstallBindings()
+        {
+        }
+    }
+}
