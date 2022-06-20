@@ -1,0 +1,75 @@
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace %PROJECT_NAME%.Utils.Coroutine
+{
+    public class CoroutineManager : MonoBehaviour, ICoroutineManager
+    {
+        private static CoroutineManager _instance = null;
+        private readonly Dictionary<string, Coroutine> _coroutines = new Dictionary<string, Coroutine>();
+
+        public static ICoroutineManager I
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception();
+                }
+
+                return _instance;
+            }
+        }
+
+        private void Awake()
+        {
+            if (_instance == null)
+            {
+                _instance = this;
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
+        public bool DoExecute(IEnumerator enumerator, string key)
+        {
+            if (_coroutines.ContainsKey(key))
+            {
+                return false;
+            }
+            Coroutine coroutine = StartCoroutine(Execute(enumerator, key));
+            _coroutines.Add(key, coroutine);
+            return true;
+        }
+
+        public bool IsRunning(string key)
+        {
+            return _coroutines.ContainsKey(key);
+        }
+
+        public bool Stop(string key)
+        {
+            if (_coroutines.ContainsKey(key))
+            {
+                Coroutine coroutine = _coroutines[key];
+                StopCoroutine(coroutine);
+                return true;
+            }
+            return false;
+        }
+
+        private IEnumerator Execute(IEnumerator enumerator, string key)
+        {
+            yield return enumerator;
+            if (_coroutines.ContainsKey(key))
+            {
+                _coroutines.Remove(key);
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+using System.Collections;
+
+namespace %PROJECT_NAME%.Utils.Coroutine
+{
+    public interface ICoroutineManager
+    {
+        bool DoExecute(IEnumerator enumerator, string key);
+        bool IsRunning(string key);
+        bool Stop(string key);
+    }
+}
