@@ -85,6 +85,16 @@
       "template_path": "utils/coroutines/manager_interface.tp",
       "output_path": "%SCRIPTS_DIR%/%PROJECT_NAME%/Utils/Coroutine/ICoroutineManager.cs",
       "is_override": true
+    },
+    {
+      "template_path": "utils/editor/symbol.tp",
+      "output_path": "%OUT_DIR%/Assets/%PROJECT_NAME%/Editor/SymbolWindow.cs",
+      "is_override": true
+    },
+    {
+      "template_path": "utils/editor/symbol_xml.tp",
+      "output_path": "%OUT_DIR%/Assets/%PROJECT_NAME%/Editor/symbols.xml",
+      "is_override": true
     }
   ]
 }
