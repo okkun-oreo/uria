@@ -10,7 +10,7 @@ namespace %PROJECT_NAME%.View.Zenject
         public override void InstallBindings()
         {
             // ViewController
-            Container.Bind(typeof(I%PASCAL_NAME%View)).FromInstance(vc).AsCached();
+            Container.Bind(typeof(I%PASCAL_NAME%ViewController)).FromInstance(vc).AsCached();
 
             // Presenter
             Container.Bind(typeof(I%PASCAL_NAME%Presenter)).To<%PASCAL_NAME%Presenter>().AsCached();

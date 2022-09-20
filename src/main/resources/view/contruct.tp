@@ -1,5 +1,7 @@
+using %PROJECT_NAME%.View.Scenes;
+
 namespace %PROJECT_NAME%.View.Scenes.%PASCAL_NAME% {
-    public interface I%PASCAL_NAME%View : IViewController
+    public interface I%PASCAL_NAME%ViewController : IViewController
     {
         
     }
